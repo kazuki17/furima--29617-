@@ -8,4 +8,7 @@ class ItemsController < ApplicationController
   @items = Item.all
  end
 
+ def show
+ end
+
 end
