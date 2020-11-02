@@ -55,3 +55,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'mini_magick'
+gem 'rspec-rails'
+gem 'factory_bot_rails'
+gem 'faker'
