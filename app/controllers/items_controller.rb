@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
-
- def index
+  before_action :set_item, only: [:edit, :update]
+ 
+ 
+  def index
   @items = Item.all
  end
  
@@ -14,6 +16,11 @@ class ItemsController < ApplicationController
  def edit
  end
 
+ def update
+  @items.update(message_params)
+  redirect_to root_path
+end
+
  def create
   Item.create(item_params)
  end
@@ -22,5 +29,9 @@ class ItemsController < ApplicationController
  def item_params
   params.require(:items).permit(:content, :image)
  end
+
+ def set_item
+  @items = Item.find(params[:id])
+end
 
 end
