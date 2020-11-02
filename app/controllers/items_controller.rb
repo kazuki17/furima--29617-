@@ -15,6 +15,12 @@ class ItemsController < ApplicationController
  end
 
  def create
+  Item.create(item_params)
+ end
+
+ private
+ def item_params
+  params.require(:items).permit(:content, :image)
  end
 
 end
