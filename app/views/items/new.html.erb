@@ -23,9 +23,11 @@
         <%= f.file_field :item_image, id:"item-image" %>
       </div>
 
-  <%= message.content %>
-  <%= image_tag message.image.variant(resize: '100x100') if message.image.present? %>
-  <br>
+   <%= message.content %>
+   <%= image_tag message.image.variant(resize: '100x100') if message.image.present? %>
+   <br>
+
+    <%= link_to "編集", edit_message_path(message.id) %>
 
     </div>
     <%# /出品画像 %>
