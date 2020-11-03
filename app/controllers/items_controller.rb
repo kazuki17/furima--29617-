@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update]
  
- 
   def index
   @items = Item.all
  end
@@ -32,6 +31,6 @@ end
 
  def set_item
   @items = Item.find(params[:id])
-end
+ end
 
 end

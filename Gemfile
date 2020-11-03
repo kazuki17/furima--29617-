@@ -58,3 +58,8 @@ gem 'mini_magick'
 gem 'rspec-rails'
 gem 'factory_bot_rails'
 gem 'faker'
+gem 'active_hash'
+
+group :production do
+  gem 'rails_12factor'
+end
