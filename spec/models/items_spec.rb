@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe items, type: :model do
+RSpec.describe Item, type: :model do
   describe '#create' do
     before do
-      @items = FactoryBot.build(:item)
+      @items = FactoryBot.build(:items)
       @items.image = fixture_file_upload('public/images/test_image.png')
     end
 
