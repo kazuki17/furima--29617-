@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
   end
  
  def new
-  
   @items = Item.new
  end
 
@@ -34,5 +33,5 @@ class ItemsController < ApplicationController
  def set_item
   @items = Item.find(params[:id])
  end
-end 
+end
 end
