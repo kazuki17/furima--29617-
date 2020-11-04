@@ -4,10 +4,10 @@ class ItemsController < ApplicationController
   def index
   @items = Item.all
   @items = Item.order("created_at DESC")
- end
+  end
  
  def new
-  @items = Item.all
+  
   @items = Item.new
  end
 
@@ -20,29 +20,19 @@ class ItemsController < ApplicationController
  def update
   @items.update(message_params)
   redirect_to root_path
-end
+ end
 
  def create
   Item.create(item_params)
-  @items = Item.new(item_params)
-    if @items.save
-      redirect_to root_path
-    else
-      render :new
-    end
  end
 
  private
  def item_params
-  params.require(:items).permit(
-    :title,
-    :text,
-    :genre_id
-  )
+  params.require(:item).permit(:image, :text).
  end
 
  def set_item
   @items = Item.find(params[:id])
  end
-
+end 
 end

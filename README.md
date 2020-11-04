@@ -1,24 +1,39 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# デーブル設計
 
-Things you may want to cover:
+## user テーブル
 
-* Ruby version
+nickname,              null: false, 
+email,                 null: false, 
+encrypted_password     null: false,
+reset_password_token   null: false,
+reset_password_sent_at null: false,
+last_name              null: false,
+first_name             null: false,
+last_name_kana         null: false,
+first_name_kana        null: false, 
+birth_date             null: false,
+remember_created_at    null: false,
 
-* System dependencies
+### Association
+- has_many :item
+- has_many :buy
 
-* Configuration
+## items テーブル
 
-* Database creation
+image        , null: false
+name         , null: false
+text         , null: false
+item_category           , null: false
+item_sales_status       , null: false
+item_shipping_fee_status         , null: false
+item_prefecture         , null: false
+item_scheduled_delivery          , null: false
 
-* Database initialization
+### Association
+- has_one :buy
+- belongs_to :item
 
-* How to run the test suite
+## buy テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
