@@ -37,17 +37,3 @@ item_scheduled_delivery          , null: false
 
 ## buy テーブル
 
-card_number,    null: false
-card_exp_month, null: false
-card_exp_year,  null: false
-card_cvc,       null: false
-postal_code,    null: false
-prefecture,     null: false
-city,           null: false
-addresses,      null: false
-building,       null: false
-phone_number,   null: false
-
-### Association
-- has_one :item
-- belongs_to :user
