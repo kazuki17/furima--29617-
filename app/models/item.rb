@@ -12,4 +12,9 @@ class Item < ApplicationRecord
   with_options numericality: { other_than: 1 } do
     validates :item_category_id
   end
+
+    #アソシエーションの定義
+    belongs_to :user
+    has_one    :buy
+    
 end
