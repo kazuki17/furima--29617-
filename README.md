@@ -33,7 +33,7 @@ item_scheduled_delivery          , null: false
 
 ### Association
 - has_one :buy
-- belongs_to :item
+- belongs_to :user
 
 ## buy テーブル
 
