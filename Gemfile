@@ -59,6 +59,7 @@ gem 'rspec-rails'
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'active_hash'
+gem 'pry-rails'
 
 group :production do
   gem 'rails_12factor'
