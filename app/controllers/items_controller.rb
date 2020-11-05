@@ -23,11 +23,12 @@ class ItemsController < ApplicationController
 
  def create
   Item.create(item_params)
+  redirect_to root_path
  end
 
  private
  def item_params
-  params.require(:item).permit(:image, :name, :text, :item_category_id, :item_sales_status_id, :item_sales_shipping_fee_status_id, :item_prefecture_id, :item_schduled_delivery_id)
+  params.require(:item).permit(:image, :name, :text, :item_category_id, :item_sales_status_id, :item_shipping_fee_status_id, :item_prefecture_id, :item_scheduled_delivery_id)
  end
 
  def set_item
