@@ -9,6 +9,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.text       :item_shipping_fee_status_id         , null: false
       t.integer    :item_prefecture_id                  , null: false
       t.text       :item_scheduled_delivery_id          , null: false
+      t.text       :user_id
       t.timestamps
     end
   end
