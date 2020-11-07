@@ -5,11 +5,11 @@
 
 
 
-## user テーブル
+## users テーブル
 | Column                | Type   | Options     |
  ----------------------- -------- -------------
-| nickname,             | strong | null: false |
-| email,                | string | null: false |
+| nickname              | string | null: false |
+| email                 | string | null: false |
 | last_name             | string | null: false |
 | first_name            | string | null: false |
 | last_name_kana        | string | null: false |
@@ -22,17 +22,17 @@
 - has_many :buy
 
 ## items テーブル
-| Column                | Type   | Options        |
- ----------------------- -------- ----------------
-| name                   | string |   null: false |
-| text                   | string |   null: false |
-| category               | string |   null: false |
-| sales_status           | string |   null: false |
-| shipping_fee_status    | string |   null: false |
-| prefecture             | string |   null: false |
-| scheduled_delivery     | string |   null: false |
-| price                  | string |   null: false |
-| user_id                | string |  
+| Column                    | Type    | Options       |
+ --------------------------- --------- ----------------
+| name                      | string  |   null: false |
+| text                      | string  |   null: false |
+| category                  | string  |   null: false |
+| sales_status_id           | inetger |   null: false |
+| shipping_fee_status_id    | integer |   null: false |
+| prefecture_id             | integer |   null: false |
+| scheduled_delivery_id     | integer |   null: false |
+| price                     | integer |   null: false |
+| user_id                      | string  |  foreign_key: true |
 
 
 
@@ -40,23 +40,25 @@
 - has_one :buy
 - belongs_to :user
 
-## buy テーブル
+## buys テーブル
 
-| Column                | Type   | Options        |
+| Column                | Type    | Options        |
  ----------------------- -------- ----------------
-| postal_code,          | string |   null: false
-| prefecture,           | string |
-| city,                 | string |
-| addresses,            | string | 
-| building,             | string |
-| phone_number,         | string |    null: false
+| postal_code_id        | integer | null: false    |
+| prefecture_id         | integer | null: false    |
+| city                  | string  | null: false    |
+| addresses             | string  | null: false    |
+| building              | string  |
+| phone_number          | string  | null: false    |
+| user_id               | string  |foreign_key: true |
 
 ### Association
 - has_one :item
 - belongs_to :user
 
 
-### Purchase history
-| Column                | Type   | Options        |
-| user_id               | strin  |  null: false
-| item_id               | string |  null: false
+### purchase_historys
+| Column                | Type    | Options           |
+-----------------------  -------- --------------------
+| item_id              | string  |  foreign_key: true |
+| user_id              | string  |  foreign_key: true |
