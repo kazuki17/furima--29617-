@@ -2,52 +2,61 @@
 
 # デーブル設計
 
-## user テーブル
 
-nickname,              null: false, 
-email,                 null: false, 
-encrypted_password     null: false,
-reset_password_token   null: false,
-reset_password_sent_at null: false,
-last_name              null: false,
-first_name             null: false,
-last_name_kana         null: false,
-first_name_kana        null: false, 
-birth_date             null: false,
-remember_created_at    null: false,
+
+
+## user テーブル
+| Column                | Type   | Options     |
+ ----------------------- -------- -------------
+| nickname,             | strong | null: false |
+| email,                | string | null: false |
+| last_name             | string | null: false |
+| first_name            | string | null: false |
+| last_name_kana        | string | null: false |
+| first_name_kana       | string | null: false |
+| birth_date            | datetime  | null: false |
+| remember_created_at   | datetime  | null: false |
 
 ### Association
 - has_many :item
 - has_many :buy
 
 ## items テーブル
+| Column                | Type   | Options        |
+ ----------------------- -------- ----------------
+| name                   | string |   null: false |
+| text                   | string |   null: false |
+| category               | string |   null: false |
+| sales_status           | string |   null: false |
+| shipping_fee_status    | string |   null: false |
+| prefecture             | string |   null: false |
+| scheduled_delivery     | string |   null: false |
+| price                  | string |   null: false |
+| user_id                | string |  
 
-image        , null: false
-name         , null: false
-text         , null: false
-item_category           , null: false
-item_sales_status       , null: false
-item_shipping_fee_status         , null: false
-item_prefecture         , null: false
-item_scheduled_delivery          , null: false
+
 
 ### Association
 - has_one :buy
-- belongs_to :item
+- belongs_to :user
 
 ## buy テーブル
 
-card_number,    null: false
-card_exp_month, null: false
-card_exp_year,  null: false
-card_cvc,       null: false
-postal_code,    null: false
-prefecture,     null: false
-city,           null: false
-addresses,      null: false
-building,       null: false
-phone_number,   null: false
+| Column                | Type   | Options        |
+ ----------------------- -------- ----------------
+| postal_code,          | string |   null: false
+| prefecture,           | string |
+| city,                 | string |
+| addresses,            | string | 
+| building,             | string |
+| phone_number,         | string |    null: false
 
 ### Association
 - has_one :item
 - belongs_to :user
+
+
+### Purchase history
+| Column                | Type   | Options        |
+| user_id               | strin  |  null: false
+| item_id               | string |  null: false
