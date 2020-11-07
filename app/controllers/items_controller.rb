@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update]
- 
+  
+
   def index
   @items = Item.all
   @items = Item.order("created_at DESC")
@@ -8,6 +9,7 @@ class ItemsController < ApplicationController
  
  def new
   @items = Item.new
+  @items = items.includes(:user)
  end
 
  def show
@@ -22,6 +24,7 @@ class ItemsController < ApplicationController
  end
 
  def create
+  before_action :authenticate_user!
   @items = Item.new(item_params)
   if @items.save
     redirect_to root_path

@@ -1,0 +1,24 @@
+<div class="message">
+  <div class="upper-message">
+    <div class="message-user">
+      <!-- 投稿商品名情報を出力する -->
+      <%= item.name %>
+    </div>
+    <div class="message-date">
+      <!-- 投稿した商品の金額を出力する -->
+      <%= message.item_prefecture_id %>
+    </div>
+  </div>
+  <div class="lower-message">
+    <div class="message-content">
+      <!-- 投稿した商品の画像を記述する -->
+      <%= message.item.image %>
+    </div>
+  </div>
+    <div class="lower-message">
+    <div class="message-content">
+      <!-- 投稿した商品の発送負担を記述する -->
+    <%= message.item.item_shipping_fee_status_id %>
+    </div>
+  </div>
+</div>
