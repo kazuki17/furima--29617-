@@ -59,6 +59,6 @@
 | user_id              | integer  |  foreign_key: true |
 
 ### Association
-- belongs_to :item :item
+- belongs_to :item 
 - belongs_to :user
 - has_one :buy
