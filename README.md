@@ -3,8 +3,6 @@
 # デーブル設計
 
 
-
-
 ## users テーブル
 | Column                | Type   | Options     |
 | --------------------- | ------ | ----------- |
@@ -17,12 +15,12 @@
 | birth_date            | date   | null: false |
 | encrypted_password    | string | null: false |
 
-
 ### Association
 - has_many :items
-- has_many :buys
+- has_many :purchase_historys
 
-## items テーブル
+### items テーブル
+
 | Column                    | Type    | Options           |
 | ------------------------- | ------- | ----------------- |
 | name                      | string  |   null: false     |
@@ -35,13 +33,11 @@
 | price                     | integer |   null: false     |
 | user_id                   | integer | foreign_key: true |
 
-
-
 ### Association
-- has_one :buy
+- has_one    :purchase_history
 - belongs_to :user
 
-## buys テーブル
+### buys テーブル
 
 | Column                | Type    | Options           |
 | --------------------- | ------- | ----------------- |
@@ -54,9 +50,7 @@
 | purchase_history_id   | ineger  | foreign_key: true |
 
 ### Association
-- has_one :item
-- belongs_to :user
-
+- belongs_to :purchase_history
 
 ### purchase_historys
 | Column               | Type     | Options            |
@@ -65,6 +59,6 @@
 | user_id              | integer  |  foreign_key: true |
 
 ### Association
-- has_one :item
+- belongs_to :item :item
 - belongs_to :user
 - has_one :buy
