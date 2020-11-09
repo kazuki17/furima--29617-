@@ -40,7 +40,6 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages)
     end
-
     it 'すべての情報が正しいフォーマットで入力されていればユーザー登録できる' do
       expect(@user).to be_valid
     end
@@ -65,6 +64,11 @@ RSpec.describe User, type: :model do
       @user.password = "000000"
       @user.password_confirmation = "000000"
       expect(@user).to be_valid
+    end
+    it  'passwordが空の場合だと保存できない' do
+      @user.password = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password can't be blank")
     end
     it  'passwordが半角英数字のみユーザー登録できる' do
       @user.password = 'aaaaaaa'
