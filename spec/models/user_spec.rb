@@ -54,7 +54,7 @@ RSpec.describe User, type: :model do
       another_user = FactoryBot.build(:user)
       another_user.email = @user.email
       another_user.valid?
-      expect(@user.errors.full_messages)
+      expect(another_user.errors.full_messages)
     end
     it  'emailに@が含まれていないとユーザー登録できない' do
       @user.email = "poifes"
@@ -68,6 +68,11 @@ RSpec.describe User, type: :model do
     end
     it  'passwordが半角英数字のみユーザー登録できる' do
       @user.password = 'aaaaaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+    it  'passwordが数字のみの場合ユーザー登録できない' do
+      @user.password_confirmation = "111111"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
