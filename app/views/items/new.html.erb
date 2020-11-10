@@ -6,7 +6,6 @@
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
      <%= form_with model:@item, local: true do |f| %>
-      #なんでクリエイトアクションが実装されないんだ
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     <% render 'shared/error_messages', model: f.object %>
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
@@ -31,13 +30,13 @@
         商品名
         <span class="indispensable">必須</span>
       </div>
-       <%= f.text_area :hoge, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
+       <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
       <div class="items-explain">
         <div class="weight-bold-text">
           商品の説明
           <span class="indispensable">必須</span>
         </div>
-         <%= f.text_area :hoge, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
+         <%= f.text_area :text, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
       </div>
     </div>
     <%# /商品名と商品説明 %>
@@ -50,12 +49,12 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-         <%= f.collection_select(:item_category, ItemCategory.all, :id, :name, {}, {class:"select-box", id:"item_category"}) %>
+         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item_category"}) %>
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-         <%= f.collection_select(:item_sales_status, ItemSalesStatus.all, :id, :name, {}, {class:"select-box", id:"item_sales_status"}) %>
+         <%= f.collection_select(:sales_status_id, SalesStatus.all, :id, :name, {}, {class:"select-box", id:"item_sales_status"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -71,17 +70,17 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-         <%= f.collection_select(:item_shipping_fee_status,ItemShippingFeeStatus.all, :id, :name, {}, {class:"select-box", id:"item_shipping_fee_status"}) %>
+         <%= f.collection_select(:shipping_fee_status_id,ShippingFeeStatus.all, :id, :name, {}, {class:"select-box", id:"item_shipping_fee_status"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-         <%= f.collection_select(:item_prefecture, ItemPrefecture.all, :id, :name, {}, {class:"select-box", id:"item_prefecture"}) %>
+         <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item_prefecture"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-         <%= f.collection_select(:item_scheduled_delivery, ItemScheduledDelivery.all, :id, :name, {}, {class:"select-box", id:"item_scheduled_delivery"}) %>
+         <%= f.collection_select(:scheduled_delivery_id, ScheduledDelivery.all, :id, :name, {}, {class:"select-box", id:"item_scheduled_delivery"}) %>
       </div>
     </div>
     <%# /配送について %>
@@ -99,7 +98,7 @@
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-           <%= f.text_field :item_price, class:"price-input", id:"item-price", placeholder:"例）300" %>
+           <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
@@ -143,7 +142,7 @@
     </div>
     <%# /下部ボタン %>
   </div>
-  <%# <% end %> %>
+   <% end %> 
 
   <footer class="items-sell-footer">
     <ul class="menu">

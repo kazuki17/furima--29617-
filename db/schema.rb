@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_034054) do
+ActiveRecord::Schema.define(version: 2020_11_02_134614) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,30 +33,16 @@ ActiveRecord::Schema.define(version: 2020_11_04_034054) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "buys", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "card_number", null: false
-    t.string "fcard_exp_month", null: false
-    t.string "card_exp_year", null: false
-    t.string "card_cvc", null: false
-    t.string "postal_code", null: false
-    t.string "prefecture", null: false
-    t.string "city", null: false
-    t.string "addresses", null: false
-    t.string "building", null: false
-    t.string "phone_number", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "name", null: false
-    t.integer "text", null: false
-    t.text "item_category_id", null: false
-    t.string "item_sales_status_id", null: false
-    t.text "item_shipping_fee_status_id", null: false
-    t.integer "item_prefecture_id", null: false
-    t.text "item_scheduled_delivery_id", null: false
-    t.text "user_id", null: false
+    t.text "text", null: false
+    t.integer "category_id", null: false
+    t.integer "sales_status_id", null: false
+    t.integer "shipping_fee_status_id", null: false
+    t.integer "prefecture_id", null: false
+    t.integer "scheduled_delivery_id", null: false
+    t.integer "price", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
