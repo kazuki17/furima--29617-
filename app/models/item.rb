@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
    has_one_attached :image
+    belongs_to :user
 
    with_options presence: true do
     validates :name
@@ -24,6 +25,6 @@ class Item < ApplicationRecord
 
    #選択が「--」のままになっていないか
    with_options numericality: { other_than: 1 } do
-     validates :category
+     validates :category_id
    end
 end

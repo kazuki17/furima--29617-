@@ -7,11 +7,7 @@ RSpec.describe Item, type: :model do
       @items.image = fixture_file_upload('public/images/test_image.png')
     end
 
-    it 'ログインしているユーザーだけが、出品ページへ遷移できること' do
-      @items.image = 'current_user'
-      @items.valid?
-      expect(@items.errors.full_messages).to include("Category is not a number")
-    end
+ 
     it '画像 image は1枚もないと保存できないこと(ActiveStorageを使用すること)' do
       @items.image = ''
       @items.valid?
@@ -57,11 +53,11 @@ RSpec.describe Item, type: :model do
       @items.valid?
       expect(@items.errors.full_messages).to include("Price can't be blank")
     end
-    # it 価格の範囲が、¥300~¥9,999,999の間であること do
-    #   @items.nickname = '100'
-    #   @items.valid?
-    #   expect(@user.errors.full_messages).to include("Nickname can't be blank")
-    # end
+     it '価格の範囲が、¥300~¥9,999,999の間であること' do
+       @items.price = '100~200'
+       @items.valid?
+       expect(@items.errors.full_messages).to include("Category is not a number")
+     end
     it '販売価格は半角数字のみ保存可能であること' do
       @items.price = 'qqqqqq'
       @items.valid?
