@@ -4,14 +4,11 @@ RSpec.describe Item, type: :model do
   describe '#create' do
     before do
       @items = FactoryBot.build(:item)
-      @items.image = fixture_file_upload('public/images/test_image.png')
     end
-
- 
-    it '画像 image は1枚もないと保存できないこと(ActiveStorageを使用すること)' do
-      @items.image = ''
+    it '画像 image は1枚もないと保存できないこと' do
+      @items.image = nil
       @items.valid?
-      expect(@items.errors.full_messages).to include("User must exist")
+      expect(@items.errors.full_messages).to include("Image can't be blank")
     end
     it '商品名 name が空では保存できないこと' do
       @items.name = ''
@@ -53,16 +50,16 @@ RSpec.describe Item, type: :model do
       @items.valid?
       expect(@items.errors.full_messages).to include("Price can't be blank")
     end
-     it '価格の範囲が、¥300~¥9,999,999の間であること' do
+    it '価格の範囲が、¥300~¥9,999,999の間であること' do
       @items.price = 299
       @items.valid?
-      expect(@items.errors.full_messages).to include("User must exist")
-     end
-     it '価格の範囲が、¥300~¥9,999,999の間であること' do
+      expect(@items.errors.full_messages).to include("Price is not included in the list")
+    end
+    it '価格の範囲が、¥300~¥9,999,999の間であること' do
       @items.price = 10000000
       @items.valid?
-      expect(@items.errors.full_messages).to include("User must exist")
-     end
+      expect(@items.errors.full_messages).to include("Price is not included in the list")
+    end
     it '販売価格は半角数字のみ保存可能であること' do
       @items.price = 'qqqqqq'
       @items.valid?

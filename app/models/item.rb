@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
    has_one_attached :image
-    belongs_to :user
+   belongs_to :user
 
   with_options numericality: { other_than: 1 } do   
     validates :category_id           
@@ -12,6 +12,7 @@ class Item < ApplicationRecord
 
    with_options presence: true do
     validates :name
+    validates :image
     validates :text
     validates :category_id         
     validates :sales_status_id
@@ -22,6 +23,8 @@ class Item < ApplicationRecord
     validates :user_id
    end 
 
+   validates :price, inclusion: { in: 300..9999999}
+
    extend ActiveHash::Associations::ActiveRecordExtensions
    belongs_to_active_hash :category
    belongs_to_active_hash :sales_status
@@ -30,5 +33,5 @@ class Item < ApplicationRecord
    belongs_to_active_hash :scheduled_delivery
    #空の投稿を保存できないようにする
    
-   end
+
 end
