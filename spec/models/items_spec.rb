@@ -5,6 +5,16 @@ RSpec.describe Item, type: :model do
     before do
       @items = FactoryBot.build(:item)
     end
+
+    
+    context '商品出品ができる時' do
+
+      it '全ての項目が入力されていれば出品できる'  do
+        expect(@items).to be_valid
+      end
+    end 
+      
+    context '商品出品ができない時' do
     it '画像 image は1枚もないと保存できないこと' do
       @items.image = nil
       @items.valid?
@@ -50,22 +60,6 @@ RSpec.describe Item, type: :model do
       @items.valid?
       expect(@items.errors.full_messages).to include("Price is out of setting range")
     end
-    it '価格の範囲が、¥300~¥9,999,999の間であること' do
-      @items.price = 299
-      @items.valid?
-      expect(@items.errors.full_messages).to include("Price is out of setting range")
-    end
-    it '価格の範囲が、¥300~¥9,999,999の間であること' do
-      @items.price = 10000000
-      @items.valid?
-      expect(@items.errors.full_messages).to include("Price is out of setting range")
-    end
-    it '販売価格は半角数字のみ保存可能であること' do
-      @items.price = 'qqqqqq'
-      @items.valid?
-      expect(@items.errors.full_messages).to include("Price is out of setting range")
-    end
-
     it 'カテゴリーの情報 category_id id:1が選択されている場合に出品ができない' do
       @items.category_id = 1
       @items.valid?
@@ -92,4 +86,5 @@ RSpec.describe Item, type: :model do
       expect(@items.errors.full_messages).to include("Scheduled delivery must be other than 1")
     end
   end
+end
 end
