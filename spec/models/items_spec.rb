@@ -38,58 +38,58 @@ RSpec.describe Item, type: :model do
     it '発送元の地域についての情報 prefecture_id が空では保存できないこと' do
       @items.prefecture_id = ''
       @items.valid?
-      expect(@items.errors.full_messages).to include("Prefecture can't be blank")
+      expect(@items.errors.full_messages).to include("Prefecture is not a number")
     end
     it '発送までの日数についての情報 scheduled_delivery_id が空では保存できないこと' do
       @items.scheduled_delivery_id = ''
       @items.valid?
-      expect(@items.errors.full_messages).to include("Scheduled delivery can't be blank")
+      expect(@items.errors.full_messages).to include("Scheduled delivery is not a number")
     end
     it '価格についての情報 price が空では保存できないこと' do
       @items.price = ''
       @items.valid?
-      expect(@items.errors.full_messages).to include("Price can't be blank")
+      expect(@items.errors.full_messages).to include("Price is out of setting range")
     end
     it '価格の範囲が、¥300~¥9,999,999の間であること' do
       @items.price = 299
       @items.valid?
-      expect(@items.errors.full_messages).to include("Price is not included in the list")
+      expect(@items.errors.full_messages).to include("Price is out of setting range")
     end
     it '価格の範囲が、¥300~¥9,999,999の間であること' do
       @items.price = 10000000
       @items.valid?
-      expect(@items.errors.full_messages).to include("Price is not included in the list")
+      expect(@items.errors.full_messages).to include("Price is out of setting range")
     end
     it '販売価格は半角数字のみ保存可能であること' do
       @items.price = 'qqqqqq'
       @items.valid?
-      expect(@items.errors.full_messages).to include("User must exist")
+      expect(@items.errors.full_messages).to include("Price is out of setting range")
     end
 
     it 'カテゴリーの情報 category_id id:1が選択されている場合に出品ができない' do
-      @items.category_id = 'id:1'
+      @items.category_id = 1
       @items.valid?
-      expect(@items.errors.full_messages).to include("User must exist")
+      expect(@items.errors.full_messages).to include("Category must be other than 1")
     end
     it '商品の状態についての情報 sales_status_id id:1が選択されている場合に出品ができない' do
-      @items.sales_status_id = 'id:1'
+      @items.sales_status_id = 1
       @items.valid?
-      expect(@items.errors.full_messages).to include("User must exist")
+      expect(@items.errors.full_messages).to include("Sales status must be other than 1")
     end
     it '配送料の負担についての情報 shipping_fee_status_id id:1が選択されている場合に出品ができない' do
-      @items.shipping_fee_status_id = 'id:1'
+      @items.shipping_fee_status_id = 1
       @items.valid?
-      expect(@items.errors.full_messages).to include("User must exist")
+      expect(@items.errors.full_messages).to include("Shipping fee status must be other than 1")
     end
     it '発送元の地域についての情報 prefecture_id id:1が選択されている場合に出品ができない' do
-      @items.prefecture_id = 'id:1'
+      @items.prefecture_id = 1
       @items.valid?
-      expect(@items.errors.full_messages).to include("User must exist")
+      expect(@items.errors.full_messages).to include("Prefecture must be other than 1")
     end
     it '発送までの日数についての情報 scheduled_delivery_id id:1が選択されている場合に出品ができない' do
-      @items.scheduled_delivery_id = 'id:1'
+      @items.scheduled_delivery_id = 1
       @items.valid?
-      expect(@items.errors.full_messages).to include("User must exist")
+      expect(@items.errors.full_messages).to include("Scheduled delivery must be other than 1")
     end
   end
 end
