@@ -30,9 +30,5 @@ class Item < ApplicationRecord
    belongs_to_active_hash :scheduled_delivery
    #空の投稿を保存できないようにする
    
-
-   #選択が「--」のままになっていないか
-   with_options numericality: { other_than: 1 } do
-     validates :category_id
    end
 end
