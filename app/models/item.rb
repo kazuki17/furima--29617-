@@ -2,11 +2,13 @@ class Item < ApplicationRecord
    has_one_attached :image
     belongs_to :user
 
-    validates :category_id,            numericality: { other_than: 1 } 
-    validates :sales_status_id,        numericality: { other_than: 1 } 
-    validates :shipping_fee_status_id, numericality: { other_than: 1 } 
-    validates :prefecture_id,          numericality: { other_than: 1 } 
-    validates :scheduled_delivery_id,  numericality: { other_than: 1 } 
+  with_options numericality: { other_than: 1 } do   
+    validates :category_id           
+    validates :sales_status_id        
+    validates :shipping_fee_status_id
+    validates :prefecture_id      
+    validates :scheduled_delivery_id 
+  end
 
    with_options presence: true do
     validates :name

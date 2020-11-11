@@ -55,6 +55,10 @@ RSpec.describe Item, type: :model do
     end
      it '価格の範囲が、¥300~¥9,999,999の間であること' do
       @items.price = 299
+      @items.valid?
+      expect(@items.errors.full_messages).to include("User must exist")
+     end
+     it '価格の範囲が、¥300~¥9,999,999の間であること' do
       @items.price = 10000000
       @items.valid?
       expect(@items.errors.full_messages).to include("User must exist")
