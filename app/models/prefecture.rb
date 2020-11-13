@@ -6,6 +6,6 @@ class Prefecture < ActiveHash::Base
     { id: 4, name: '岩手県' },
     { id: 5, name: '宮城県' },
     { id: 6, name: '秋田県' },
-    { id: 7, name: '山形県' },
+    { id: 7, name: '山形県' }
   ]
 end
