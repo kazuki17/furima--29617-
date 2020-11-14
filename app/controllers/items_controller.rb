@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update, :show]
+  before_action :set_item, only: [:show, :edit]
   before_action :authenticate_user!, only: [:new]
 
   def index
@@ -13,13 +13,15 @@ class ItemsController < ApplicationController
   def show
   end
 
-  #  def edit
-  #  end
+  def edit
+    @item = Item.find(params[:id])
+  end
 
-  # def update
-  #   @items.update(message_params)
-  #   redirect_to root_path
-  # end
+   def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+    redirect_to item_path
+   end
 
   def create
     @item = Item.new(item_params)
