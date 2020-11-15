@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :show]
 
   def index
@@ -37,7 +37,13 @@ class ItemsController < ApplicationController
       # 保存されなければ、newに戻る
       render 'new'
     end
+  end 
+
+  def destroy
+     @item.destroy
+     redirect_to root_path
   end
+end
 
   private
 
@@ -48,4 +54,3 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-end
