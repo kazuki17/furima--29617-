@@ -18,7 +18,6 @@ class ItemsController < ApplicationController
      if  current_user.id != @item.user.id
       redirect_to root_path
      end
-   end
   end
 
    def update
