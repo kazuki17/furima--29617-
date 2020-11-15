@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update]
-  before_action :authenticate_user!, only: [:new, :edit, :show]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :show, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -37,7 +37,17 @@ class ItemsController < ApplicationController
       # 保存されなければ、newに戻る
       render 'new'
     end
+  end 
+
+  def destroy
+   if  current_user.id != @item.user.id
+      redirect_to item_path
+    else  
+      @item.destroy
+      redirect_to root_path
+    end
   end
+end
 
   private
 
@@ -48,4 +58,3 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-end
