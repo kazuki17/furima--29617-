@@ -61,6 +61,7 @@ gem 'factory_bot_rails'
 gem 'faker'
 gem 'active_hash'
 gem 'pry-rails'
+gem 'payjp'
 
 group :production do
   gem 'rails_12factor'
