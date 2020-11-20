@@ -5,7 +5,7 @@ RSpec.describe BuyHistory, type: :model do
     before do
       @item = FactoryBot.create(:item)
       @items = FactoryBot.build(:buy_history,  item_id: @item.id)
-      sleep 1
+    sleep 1
     end
  
 
@@ -51,7 +51,7 @@ RSpec.describe BuyHistory, type: :model do
   end
 
   it 'postal_codeはハイフンなしでは登録できないこと' do
-    @items.postal_code  = '-'
+    @items.postal_code  = '3333'
     @items.valid?
     expect(@items.errors.full_messages).to include("Postal code ハイフンを使い7桁〜１１桁の数字を入力してください")
   end

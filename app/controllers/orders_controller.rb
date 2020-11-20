@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
    before_action :authenticate_user!, only: [:index]
+   before_action :set_item, only:[:index, :create]  
 
     def index
-      @item = Item.find(params[:item_id])
       @buy = BuyHistory.new   
 
       if current_user.id == @item.user_id || @item.purchase_history != nil
@@ -16,11 +16,7 @@ class OrdersController < ApplicationController
     # end
 
     def create
-      @item = Item.find(params[:item_id])
-      @buy = BuyHistory.new(item_params)   
-      
-
-
+      @buy = BuyHistory.new(item_params)
       if @buy.valid?
          pay_item
          @buy.save
@@ -45,4 +41,9 @@ class OrdersController < ApplicationController
        currency: 'jpy'                 # 通貨の種類（日本円）
      )
    end
+
+   def set_item
+    @item = Item.find(params[:id])
+  end
+
 end
