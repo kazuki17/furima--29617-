@@ -30,4 +30,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :scheduled_delivery
   # 空の投稿を保存できないようにする
+
+  has_one :purchase_history
+
 end

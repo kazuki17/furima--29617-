@@ -5,11 +5,9 @@ class BuyHistory
   attr_accessor :token
 
  with_options presence: true do
-
       validates :token
-
       validates :postal_code,   format: { with: /\A\d{3}[-]\d{4}\z/,message: '7桁の数字を入力してください'}
-      validates :city  
+      validates :city
       validates :addresses
       validates :phone_number
       validates :user_id
@@ -27,5 +25,6 @@ class BuyHistory
       # 住所の情報を保存
      Buy.create!(postal_code: postal_code, city: city, addresses: addresses, building: building, phone_number: phone_number, purchase_history_id: user.id )
     end
+
 
 end

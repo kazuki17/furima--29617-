@@ -1,8 +1,14 @@
 class OrdersController < ApplicationController
-    
+   before_action :authenticate_user!, only: [:index]
+
     def index
       @item = Item.find(params[:item_id])
       @buy = BuyHistory.new   
+
+      if current_user.id == @item.user_id || @item.purchase_history != nil
+        redirect_to root_path
+      end
+
     end
 
     # def new
@@ -12,7 +18,9 @@ class OrdersController < ApplicationController
     def create
       @item = Item.find(params[:item_id])
       @buy = BuyHistory.new(item_params)   
-      # binding.pry
+      
+
+
       if @buy.valid?
          pay_item
          @buy.save
@@ -20,6 +28,7 @@ class OrdersController < ApplicationController
       else
         render action: :index
       end
+
     end
 
     private
