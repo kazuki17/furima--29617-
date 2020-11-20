@@ -4,17 +4,20 @@ RSpec.describe BuyHistory, type: :model do
   describe '#create' do
     before do
       @item = FactoryBot.create(:item)
-      @items = FactoryBot.build(:buy_history,  item_id: @item.id)
+      @user = FactoryBot.create(:user)
+      @items = FactoryBot.build(:buy_history,  item_id: @item.id, user_id: @user.id)
     sleep 1
     end
  
 
   context '購入ができる時' do
-     it '全ての項目が入力されていれば購入できる' do
-       expect(@items).to be_valid
-     end
-   end
-
+     it '建物名が抜けていても登録できること' do
+      @items.building = nil
+      expect(@items).to be_valid
+    end
+  end
+  
+ context '商品購入ができない時' do
   it '商品名 postal_code  が空では保存できないこと' do
     @items.postal_code  = ''
     @items.valid?
@@ -45,10 +48,7 @@ RSpec.describe BuyHistory, type: :model do
     expect(@items.errors.full_messages).to include("Prefecture is not a number")
   end
 
-  it '建物名が抜けていても登録できること' do
-    @items.building  = ''
-    expect(@items).to be_valid
-  end
+
 
   it 'postal_codeはハイフンなしでは登録できないこと' do
     @items.postal_code  = '3333'
@@ -62,10 +62,23 @@ RSpec.describe BuyHistory, type: :model do
     expect(@items.errors.full_messages).to include("Postal code ハイフンを使い7桁〜１１桁の数字を入力してください")
   end
 
-  it 'prefecture_idが選択されている場合に出品ができない' do
+  it 'prefecture_idで1が選択されている場合には購入ができない' do
     @items.prefecture_id = 1
     @items.valid?
     expect(@items.errors.full_messages).to include("Prefecture must be other than 1")
   end
+
+  it 'user_idが空では購入できないこと' do
+    @items.user_id = ""
+    @items.valid?
+    expect(@items.errors.full_messages).to include("User can't be blank")
+  end
+
+  it 'item_idが空では購入できないこと' do
+    @items.item_id = ""
+    @items.valid?
+    expect(@items.errors.full_messages).to include("Item can't be blank")
+  end
  end 
+ end
 end

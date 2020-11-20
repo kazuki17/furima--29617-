@@ -1,8 +1,7 @@
 class BuyHistory 
   
   include ActiveModel::Model
-  attr_accessor :postal_code, :city, :addresses, :building, :phone_number, :user_id, :item_id, :prefecture_id
-  attr_accessor :token
+  attr_accessor :postal_code, :city, :addresses, :building, :phone_number, :user_id, :item_id, :prefecture_id, :token
 
  with_options presence: true do
       validates :token
@@ -23,7 +22,7 @@ class BuyHistory
       # 商品の情報を保存し、「user」という変数に入れている
       purchase_history = PurchaseHistory.create!(user_id: user_id, item_id: item_id )
       # 住所の情報を保存
-     Buy.create!(postal_code: postal_code, city: city, addresses: addresses, building: building, phone_number: phone_number, purchase_history_id: purchase_history.id )
+      Buy.create!(postal_code: postal_code, city: city, addresses: addresses, building: building, phone_number: phone_number, purchase_history_id: purchase_history.id )
     end
 
 
