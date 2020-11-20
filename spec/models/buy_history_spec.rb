@@ -44,5 +44,28 @@ RSpec.describe BuyHistory, type: :model do
     @items.valid?
     expect(@items.errors.full_messages).to include("Prefecture is not a number")
   end
+
+  it '建物名が抜けていても登録できること' do
+    @items.building  = ''
+    expect(@items).to be_valid
+  end
+
+  it 'postal_codeはハイフンなしでは登録できないこと' do
+    @items.postal_code  = '-'
+    @items.valid?
+    expect(@items.errors.full_messages).to include("Postal code ハイフンを使い7桁〜１１桁の数字を入力してください")
+  end
+
+  it 'phone_numberは11桁以内でないと登録できないこと' do
+    @items.postal_code  = '2222222222222'
+    @items.valid?
+    expect(@items.errors.full_messages).to include("Postal code ハイフンを使い7桁〜１１桁の数字を入力してください")
+  end
+
+  it 'prefecture_idが選択されている場合に出品ができない' do
+    @items.prefecture_id = 1
+    @items.valid?
+    expect(@items.errors.full_messages).to include("Prefecture must be other than 1")
+  end
  end 
 end

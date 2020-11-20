@@ -6,7 +6,7 @@ class BuyHistory
 
  with_options presence: true do
       validates :token
-      validates :postal_code,   format: { with: /\A\d{3}[-]\d{4}\z/,message: '7桁の数字を入力してください'}
+      validates :postal_code,   format: { with: /\A\d{3}[-]\d{4}\z/,message: 'ハイフンを使い7桁〜１１桁の数字を入力してください'}
       validates :city
       validates :addresses
       validates :phone_number
